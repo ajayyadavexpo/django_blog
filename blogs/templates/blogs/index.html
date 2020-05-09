@@ -2,7 +2,17 @@
 
 {% block content %}
 
-<h1>Index page</h1>
+{% if latest_blog_list %}
+	<ul class="list-group">
+		{% for post in latest_blog_list %}
+		<li class="list-group-item">
+			<a href="{% url 'blogs:show_post' post.slug %}">{{ post.title }}</a>
+		</li>
+		{% endfor %}
+	</ul>
+{% else %}
+<h1>We don't have latest post</h1>
+{% endif %}
 
 
 {% endblock %}

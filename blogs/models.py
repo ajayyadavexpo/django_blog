@@ -34,5 +34,9 @@ class Post(models.Model):
 		self.slug = self.slug or slugify(self.title)
 		super().save(*args, **kwargs)
 
+	was_published_recently.admin_order_field = 'pub_date'
+	was_published_recently.boolean = True
+	was_published_recently.short_description = 'Published recently?'
+
 
 

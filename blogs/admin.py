@@ -9,6 +9,8 @@ from .models import Category
 class PostAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
     list_display = ('title','slug','pub_date','was_published_recently')
+    list_filter = ['pub_date']
+    search_fields = ['title']
 admin.site.register(Post,PostAdmin)
 
 class CategoryAdmin(admin.ModelAdmin):
