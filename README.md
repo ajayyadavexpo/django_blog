@@ -1,1 +1,1 @@
-this is django-blog
+

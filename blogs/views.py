@@ -28,3 +28,6 @@ class DetailView(generic.DetailView):
 
 post_detail_view = DetailView.as_view()
 
+def navbar(request):
+	return render(request,'blogs/navbar.html',{'category':Category.objects.filter()})
+
