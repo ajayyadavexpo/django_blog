@@ -31,3 +31,9 @@ post_detail_view = DetailView.as_view()
 def navbar(request):
 	return render(request,'blogs/navbar.html',{'category':Category.objects.filter()})
 
+def register(request):
+	return render(request,'blogs/register.html',{'category':Category.objects.filter()})
+
+def login(request):
+	return render(request,'blogs/login.html',{'category':Category.objects.filter()})
+

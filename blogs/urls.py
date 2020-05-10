@@ -7,4 +7,6 @@ urlpatterns=[
 	# ex: /blogs/5/
     path('blog/<slug:the_slug>/', views.post_detail_view, name='show_post'),
     path('navbar/', views.navbar, name='navbar'),
+    path('register/', views.register, name='register'),
+    path('login/', views.login, name='login'),
 ]
