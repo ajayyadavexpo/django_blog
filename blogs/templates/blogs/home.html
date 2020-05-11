@@ -1,0 +1,23 @@
+{% extends './layouts.html' %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+	{% if messages %}
+	<ul class="messages">
+	    {% for message in messages %}
+	    <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+	    {% endfor %}
+	</ul>
+	{% endif %}
+
+	<div class="col-sm-6">
+		<div class="card p-20">
+			<p>{{ request.user.email }}</p>
+			<h3>Hello, {{request.user.username}} welcome in your dashbaord</h3>
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}
