@@ -1,18 +1,66 @@
 {% extends './layouts.html' %}
+{% load static %}
+
+{% block header %}
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url({% static 'blogs/theme/img/home-bg.jpg' %})">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>DJ-Blogging</h1>
+            <span class="subheading">A Blog by DJ</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+{% endblock %}
 
 {% block content %}
 
-{% if latest_blog_list %}
-	<ul class="list-group">
-		{% for post in latest_blog_list %}
-		<li class="list-group-item">
-			<a href="{% url 'blogs:show_post' post.slug %}">{{ post.title }}</a>
-		</li>
-		{% endfor %}
-	</ul>
-{% else %}
-<h1>We don't have latest post</h1>
-{% endif %}
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+      	{% if latest_blog_list %}
+      	{% for post in latest_blog_list %}
+        <div class="post-preview">
+          <a href="{% url 'blogs:show_post' post.slug %}">
+            <h2 class="post-title">
+              {{ post.title }}
+            </h2>
+            <h3 class="post-subtitle">
+              Problems look mighty small from 150 miles up
+            </h3>
+          </a>
+          <p class="post-meta">Posted by
+            <a href="#">Start Bootstrap</a>
+            on September 24, 2019</p>
+        </div>
+        {% endfor %}
+        {% endif %}
+        <hr>
+
+        <!-- Pager -->
+        <div class="clearfix">
+          <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
 
 
 {% endblock %}
+
+
+
+
+
+
+

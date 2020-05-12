@@ -1,3 +1,2 @@
-. Profile table
-. login  form
-. register form
+Install theme
+
