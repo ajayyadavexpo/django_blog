@@ -12,12 +12,13 @@ from django.contrib import messages
 # Create your views here.
 
 class IndexView(generic.ListView):
-    template_name = 'blogs/index.html'
-    context_object_name = 'latest_blog_list'
-
-    def get_queryset(self):
-        """Return the last five published questions."""
-        return Post.objects.filter(pub_date__lte = timezone.now()).order_by('-pub_date')[:5]
+	paginate_by = 3
+	model = Post
+	template_name = 'blogs/index.html'
+	context_object_name = 'latest_blog_list'
+	def get_queryset(self):
+		"""Return the last five published questions."""
+		return Post.objects.filter(pub_date__lte = timezone.now()).order_by('-pub_date')
 
 class DetailView(generic.DetailView):
 	# This file should exist somewhere to render your page
