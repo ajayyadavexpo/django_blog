@@ -3,7 +3,7 @@
 {% load static %}
 {% block header %}
 
-  <header class="masthead" style="background-image: url({% static 'blogs/theme/img/contact-bg.jpg' %})">
+  <header class="masthead" style="background-image: url({% static 'blogs/theme/img/profile.jpg' %})">
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
@@ -11,6 +11,8 @@
           <div class="page-heading">
             <h1>Welcome</h1>
             <span class="subheading">Hello, {{ request.user.username}}</span>
+            <br>
+            <a class="btn btn-primary" href="/add-post">New Post</a>
           </div>
         </div>
       </div>

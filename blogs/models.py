@@ -1,8 +1,10 @@
 from django.db import models
+from django.conf import settings
 from django.utils import timezone
 import datetime
 # Create your models here.
 
+User = settings.AUTH_USER_MODEL
 
 class Category(models.Model):
 	category_text = models.CharField(max_length=200)
@@ -26,8 +28,12 @@ class Post(models.Model):
 	post_text = models.TextField()
 	pub_date = models.DateTimeField('Date published')
 	category = models.ForeignKey(Category, on_delete=models.CASCADE)
+	user = models.ForeignKey(User,default=1,null=True,on_delete=models.SET_NULL)
+	ORDER_STATUS = ((0, 'draft'), (1, 'publish'))
+	status = models.SmallIntegerField(choices=ORDER_STATUS)
+
 	def __str__(self):
-		return self.post_text
+		return self.title
 	def was_published_recently(self):
 		return self.pub_date>=timezone.now() - datetime.timedelta(days=1)
 	def save(self, *args, **kwargs):

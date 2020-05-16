@@ -1,2 +1,4 @@
-Install theme
 
+
+form is created but design is required and much more
+adding post by the user is going on

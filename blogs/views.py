@@ -4,7 +4,7 @@ from .models import Post,Category
 from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
-from .forms import RegisterForm,LoginForm
+from .forms import RegisterForm,LoginForm,PostForm
 from django.contrib.auth import logout, authenticate, login
 from django.contrib import messages
 
@@ -80,3 +80,27 @@ def logout_request(request):
 	logout(request)
 	messages.info(request, "Logged out successfully!")
 	return redirect("/")
+
+
+def add_post(request):
+	if request.method == 'POST':
+		form = PostForm(request.post or None, request.FILES or None)
+		if form.is_valid():
+			obj = form.save(commit = False)
+			obj.user = request.user;
+			obje.save()
+			form = PostForm()
+			messages.success(request,"Successfully created")
+
+	return render(request,'blogs/add-post.html',{ 'form':PostForm() })
+
+
+
+
+
+
+
+
+
+
+
