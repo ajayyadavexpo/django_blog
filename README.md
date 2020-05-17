@@ -1,1 +1,1 @@
-
+Dj-Blogging developed in django 

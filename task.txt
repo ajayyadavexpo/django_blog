@@ -1,7 +1,0 @@
-
-
-form is created but design is required and much more
-adding post by the user is going on
-
-
-https://www.geeksforgeeks.org/associate-user-to-its-upload-post-in-django/
