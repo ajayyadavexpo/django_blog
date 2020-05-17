@@ -11,5 +11,7 @@ urlpatterns=[
     path('login/', views.Userlogin, name='userlogin'),
     path('home/', views.home, name='home'),
     path('add-post/', views.add_post, name='add_post'),
+    path('edit-post/<int:id>', views.edit_post, name='edit_post'),
+    path('delete-post/', views.delete_post, name='delete_post'),
     path('logout/', views.logout_request, name='logout'),
 ]

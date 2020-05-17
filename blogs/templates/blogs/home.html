@@ -10,7 +10,7 @@
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="page-heading">
             <h1>Welcome</h1>
-            <span class="subheading">Hello, {{ request.user.username}}</span>
+            <span class="subheading">{{ request.user.email}}</span>
             <br>
             <a class="btn btn-primary" href="/add-post">New Post</a>
           </div>
@@ -26,22 +26,56 @@
 
 {% block content %}
 
-<div class="row justify-content-center">
-	{% if messages %}
-	<ul class="messages">
-	    {% for message in messages %}
-	    <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
-	    {% endfor %}
-	</ul>
-	{% endif %}
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+    {% endfor %}
+</ul>
+{% endif %}
 
-	<div class="col-sm-6">
-		<div class="card p-20">
-			<p>{{ request.user.email }}</p>
+<div class="row">
 
-		</div>
-	</div>
+  <div class="col-sm-12">
+    <table class="table table-bordered table-hover text-center">
+      <thead>
+        <tr>
+          <th>S.No</th>
+          <th>Title</th>
+          <th>Created At</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for post in posts %}
+        <tr>
+          <td>{{ forloop.counter }} </td>
+          <td><a href="{% url 'blogs:show_post' post.slug %}">{{ post.title }}</a> <a href="/edit-post/{{ post.id }}" class="text-white badge badge-info"> Edit</a></td>
+          <td>{{ post.pub_date }}</td>
+          <td>
+            {% if post.status == 1%}
+              <span class="badge badge-success">publish</span>
+            {% else %}
+              <span class="badge badge-default">draft</span>
+            {% endif %}
+
+          </td>
+          <td>
+            <form class="flex-container" method="POST" action="/delete-post/" > 
+              {% csrf_token %}
+              <div class="input-group"> 
+                <input type="hidden" name="post_id" value="{{ post.id }}">
+                <button name="delete" type="submit" class="btn btn-danger">DELETE </button>
+              </div> 
+            </form>
+
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    
+  </div>
 </div>
-
 
 {% endblock %}

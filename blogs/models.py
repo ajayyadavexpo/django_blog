@@ -2,6 +2,8 @@ from django.db import models
 from django.conf import settings
 from django.utils import timezone
 import datetime
+from slugify import slugify
+
 # Create your models here.
 
 User = settings.AUTH_USER_MODEL
@@ -26,7 +28,7 @@ class Post(models.Model):
 	slug = models.SlugField(unique=True)
 	image = models.ImageField(blank=True)
 	post_text = models.TextField()
-	pub_date = models.DateTimeField('Date published')
+	pub_date = models.DateTimeField(default= timezone.now )
 	category = models.ForeignKey(Category, on_delete=models.CASCADE)
 	user = models.ForeignKey(User,default=1,null=True,on_delete=models.SET_NULL)
 	ORDER_STATUS = ((0, 'draft'), (1, 'publish'))
