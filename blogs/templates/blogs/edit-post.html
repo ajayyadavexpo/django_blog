@@ -27,6 +27,7 @@
 		<div class="card p-20">
 			<form method="post" class="from-group" enctype="multipart/form-data">
 				{% csrf_token %}
+        {{ form.media }}
 				{{form|crispy}}
 				<button type="submit" class="btn btn-success">submit</button>	
 			</form>

@@ -74,8 +74,10 @@ def Userlogin(request):
 				return redirect('blogs:home')
 			else:
 				messages.error(request, "Invalid username or password.")
+				return HttpResponseRedirect("/login")
 		else:
 			messages.error(request, "Invalid username or password.")
+			return HttpResponseRedirect("/login")
 	else:
 		form = LoginForm()
 		return render(request,'blogs/login.html',{'form':form})

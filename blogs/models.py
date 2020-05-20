@@ -4,6 +4,10 @@ from django.utils import timezone
 import datetime
 from slugify import slugify
 
+
+from django.contrib.auth.models import User
+from ckeditor_uploader.fields import RichTextUploadingField
+
 # Create your models here.
 
 User = settings.AUTH_USER_MODEL
@@ -27,7 +31,7 @@ class Post(models.Model):
 	title = models.CharField(max_length=200)
 	slug = models.SlugField(unique=True)
 	image = models.ImageField(blank=True)
-	post_text = models.TextField()
+	post_text = RichTextUploadingField()
 	pub_date = models.DateTimeField(default= timezone.now )
 	category = models.ForeignKey(Category, on_delete=models.CASCADE)
 	user = models.ForeignKey(User,default=1,null=True,on_delete=models.SET_NULL)

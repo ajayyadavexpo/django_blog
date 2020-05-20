@@ -24,6 +24,13 @@
 
 <div class="row justify-content-center">
 	<div class="col-sm-6">
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li class="text-danger"  {% if message.tags %} class=" {{ message.tags }} " {% endif %} style="list-style-type: none;"> {{ message }} </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
 		<div class="card p-20">
 			<form method="post" class="from-group">
 				{% csrf_token %}

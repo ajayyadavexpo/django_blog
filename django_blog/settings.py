@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "crispy_forms",
+    'ckeditor',
+    'ckeditor_uploader',
     'blogs.apps.BlogsConfig',
 ]
 
@@ -129,4 +131,26 @@ LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
 
 
+
+
+
+#...
+SITE_ID = 1
+ 
+####################################
+    ##  CKEDITOR CONFIGURATION ##
+####################################
+ 
+CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'
+ 
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_IMAGE_BACKEND = "pillow"
+ 
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': None,
+    },
+}
+ 
+###################################
 
